@@ -21,7 +21,7 @@ begin
     gem.summary = "Facebook integration for Rack & Rails application"
     gem.email = "rene.dekart@gmail.com"
     gem.homepage = "http://github.com/dekart/facepalm"
-    gem.authors = ["Aleksey Dmitriev"]
+    gem.authors = ["Aleksey V. Dmitriev"]
 
     gem.add_dependency "ie_iframe_cookies", '~> 0.1.2'
     gem.add_dependency "koala", '~> 1.2.1'
