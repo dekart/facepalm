@@ -16,10 +16,15 @@ Gem::Specification.new do |s|
     "README.md"
   ]
   s.files = [
+    "Gemfile",
+    "Gemfile.lock",
     "LICENSE",
     "README.md",
+    "Rakefile",
+    "VERSION",
     "app/.gitkeep",
     "config/routes.rb",
+    "facepalm.gemspec",
     "init.rb",
     "lib/facepalm.rb",
     "lib/facepalm/config.rb",
@@ -42,9 +47,15 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<ie_iframe_cookies>, ["~> 0.1.2"])
+      s.add_runtime_dependency(%q<koala>, ["~> 1.2.1"])
     else
+      s.add_dependency(%q<ie_iframe_cookies>, ["~> 0.1.2"])
+      s.add_dependency(%q<koala>, ["~> 1.2.1"])
     end
   else
+    s.add_dependency(%q<ie_iframe_cookies>, ["~> 0.1.2"])
+    s.add_dependency(%q<koala>, ["~> 1.2.1"])
   end
 end
 
