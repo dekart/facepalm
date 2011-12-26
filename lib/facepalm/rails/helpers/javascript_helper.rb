@@ -2,33 +2,48 @@ module Facepalm
   module Rails
     module Helpers
       module JavascriptHelper
+
+        # A helper to integrate Facebook Connect to the current page. Generates a
+        # JavaScript code that initializes Facebook Javascript client for the
+        # current application.
+        #
+        # @param app_id   Facebook App ID of the application. Defaults to value provided by the current config.
+        # @param options  A hash of options for JavaScript generation. Available options are:
+        #                   :cookie - Enable cookie generation for the application. Default to true.
+        #                   :status - Enable login status check. Defaults to true.
+        #                   :xfbml - Enable XFBML tag parsing. Default to true.
+        #                   :frictionless - Enable frictionless app request delivery. Defaults to true
+        #                   :locale - Locale to use for JavaScript client. Defaults to 'en_US'.
+        #                   :weak_cache - Enable FB JS client cache expiration every minute. Defaults to false.
+        #                   :async - Enable asynchronous FB JS client code load and initialization. Defaults to false.
+        #                   :cache_url - An URL to load custom or cached version of the FB JS client code. Not used by default.
+        # @param &block   A block of JS code to be inserted in addition to FB client initialization code.
         def fb_connect_js(*args, &block)
           options = args.extract_options!
 
           app_id  = args.shift || facepalm.app_id
 
           options.reverse_merge!(
-            :cookie   => true,
-            :status   => true,
-            :xfbml    => true,
-            :oauth    => true,
-            :frictionless_requests => :true,
-            :locale   => "en_US"
+            :cookie       => true,
+            :status       => true,
+            :xfbml        => true,
+            :frictionless => true,
+            :locale       => "en_US"
           )
 
           extra_js = capture(&block) if block_given?
 
           init_js = <<-JAVASCRIPT
             FB.init({
-              appId  : '#{app_id}',
-              status : #{ options[:status] }, // check login status
-              cookie : #{ options[:cookie] }, // enable cookies to allow the server to access the session
-              xfbml  : #{ options[:xfbml] },  // parse XFBML
-              oauth  : #{ options[:oauth] },
-              frictionlessRequests : #{ options[:frictionless_requests] },
+              appId  : '#{ app_id }',
+              status : #{ options[:status] },
+              cookie : #{ options[:cookie] },
+              xfbml  : #{ options[:xfbml] },
+              frictionlessRequests : #{ options[:frictionless] },
               channelUrl : '#{ options[:channel_url] || 'null' }'
             });
           JAVASCRIPT
+
           init_js = "FB._https = true; #{ init_js }" if request.ssl?
 
           js_url = "connect.facebook.net/#{options[:locale]}/all.js"

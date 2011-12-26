@@ -2,12 +2,15 @@ module Facepalm
   module Rails
     module Controller
       module Redirects
+        # Overrides ActionController::Base#redirect_to to pass signed_request in flash[]
         def redirect_to(*args)
           flash[:signed_request] = fb_signed_request
 
           super(*args)
         end
 
+        # Redirects user to a definite URL with JavaScript code that overwrites
+        # top frame location. Use it to redirect user from within an iframe.
         def redirect_from_iframe(url_options)
           redirect_url = url_options.is_a?(String) ? url_options : url_for(url_options)
 
@@ -19,6 +22,12 @@ module Facepalm
           )
         end
 
+        # Generates HTML and JavaScript code to redirect user with top frame location
+        # overwrite
+        #
+        # @param target_url   An URL to redirect the user to
+        # @param custom_code  A custom HTML code to insert into the result document.
+        #                     Can be used to add OpenGraph tags to redirect page code.
         def iframe_redirect_code(target_url, custom_code = nil)
           %{
             <html><head>
