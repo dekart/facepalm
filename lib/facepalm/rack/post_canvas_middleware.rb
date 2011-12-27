@@ -10,7 +10,7 @@ module Facepalm
       end
 
       def call(env)
-        request = Rack::Request.new(env)
+        request = ::Rack::Request.new(env)
 
         if request.POST['signed_request'] && request.post? && request.params['_method'].blank?
           env['REQUEST_METHOD'] = 'GET'

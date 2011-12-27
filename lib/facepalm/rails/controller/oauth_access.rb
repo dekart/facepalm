@@ -78,7 +78,7 @@ module Facepalm
               facepalm.oauth_client.url_for_oauth_code(
                 :permissions => permissions,
                 :callback => facepalm_oauth_endpoint_url(
-                  :fb_return_to => Rack::Utils.escape(return_code)
+                  :fb_return_to => ::Rack::Utils.escape(return_code)
                 )
               )
             )
