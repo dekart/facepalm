@@ -27,7 +27,7 @@ module Facepalm
     end
 
     # Defining methods for quick access to config values
-    %w{app_id secret canvas_page_name callback_domain}.each do |attribute|
+    %w{app_id secret namespace callback_domain}.each do |attribute|
       class_eval %{
         def #{ attribute }
           config[:#{ attribute }]
@@ -55,7 +55,7 @@ module Facepalm
 
     # URL of the application canvas page
     def canvas_page_url(protocol)
-      "#{ protocol }apps.facebook.com/#{ canvas_page_name }"
+      "#{ protocol }apps.facebook.com/#{ namespace }"
     end
 
     # Application callback URL

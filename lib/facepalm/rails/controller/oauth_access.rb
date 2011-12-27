@@ -46,6 +46,10 @@ module Facepalm
         # Requires a given set of permissions in context of the current action.
         # Use it to require permissions in a single action or custom filter.
         #
+        # NOTE: Facepalm doesn't check if user provided all required permissions.
+        #       It only checks if user was authenticated and redirects to permission
+        #       request page with a given set of permissions.
+        #
         # @param permissions An array of permissions to require
         #
         # @return true if user authorized the application, false otehrwise
