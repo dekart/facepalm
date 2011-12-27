@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+bundle exec rake gemspec:generate build
+cd pkg
+gem uninstall facepalm
+gem install --local facepalm
+cd ..
