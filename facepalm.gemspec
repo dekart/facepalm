@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Aleksey Dmitriev"]
-  s.date = %q{2011-12-26}
+  s.authors = ["Aleksey V. Dmitriev"]
+  s.date = %q{2011-12-27}
   s.email = %q{rene.dekart@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -23,13 +23,14 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "app/.gitkeep",
+    "app/controllers/facepalm/endpoint_controller.rb",
     "config/routes.rb",
     "facepalm.gemspec",
     "init.rb",
     "lib/facepalm.rb",
     "lib/facepalm/config.rb",
+    "lib/facepalm/engine.rb",
     "lib/facepalm/rack/post_canvas_middleware.rb",
-    "lib/facepalm/rails.rb",
     "lib/facepalm/rails/controller.rb",
     "lib/facepalm/rails/controller/oauth_access.rb",
     "lib/facepalm/rails/controller/redirects.rb",

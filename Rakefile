@@ -13,6 +13,10 @@ task :default do
   sh "git checkout Gemfile.lock"
 end
 
+task :install do
+  sh "bundle exec rake build && cd pkg; gem uninstall facepalm; gem install --local facepalm"
+end
+
 begin
   require 'jeweler'
 

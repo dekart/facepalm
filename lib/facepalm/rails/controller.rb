@@ -1,3 +1,7 @@
+require 'facepalm/rails/controller/oauth_access'
+require 'facepalm/rails/controller/url_rewriting'
+require 'facepalm/rails/controller/redirects'
+
 module Facepalm
   module Rails
 
@@ -13,6 +17,8 @@ module Facepalm
           before_filter :normal_cookies_for_ie_in_iframes!
 
           helper_method(:facepalm, :fb_signed_request, :current_facebook_user, :params_without_facebook_data)
+
+          helper Facepalm::Rails::Helpers
         end
       end
 
