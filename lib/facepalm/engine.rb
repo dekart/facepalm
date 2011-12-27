@@ -15,7 +15,14 @@ if Rails::VERSION::MAJOR > 2
   end
 
 else
+  ActionController::Routing::Routes.add_configuration_file(File.expand_path('../../../config/routes.rb', __FILE__))
+
   ActionController::Dispatcher.middleware.insert_after(ActionController::ParamsParser, Facepalm::Rack::PostCanvasMiddleware)
 
   ActionController::Base.send(:include, Facepalm::Rails::Controller)
+
+  # Loading plugin controllers manually because the're not loaded automatically from gems
+  Dir[File.expand_path('../../../app/controllers/**/*.rb', __FILE__)].each do |file|
+    require file
+  end
 end

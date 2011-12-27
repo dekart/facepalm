@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "config/routes.rb",
     "facepalm.gemspec",
     "init.rb",
+    "install",
     "lib/facepalm.rb",
     "lib/facepalm/config.rb",
     "lib/facepalm/engine.rb",
