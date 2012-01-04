@@ -2,11 +2,17 @@ module Facepalm
   module Rails
     module Controller
       module Redirects
+        def self.included(base)
+          base.class_eval do
+            alias_method_chain :redirect_to, :signed_request
+          end
+        end
+
         # Overrides ActionController::Base#redirect_to to pass signed_request in flash[]
-        def redirect_to(*args)
+        def redirect_to_with_signed_request(*args)
           flash[:signed_request] = fb_signed_request
 
-          super(*args)
+          redirect_to_without_signed_request(*args)
         end
 
         # Redirects user to a definite URL with JavaScript code that overwrites
