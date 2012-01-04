@@ -10,6 +10,8 @@ module Facepalm
           end
         end
 
+        protected
+
         # A helper to generate an URL of the application canvas page URL
         #
         # @param protocol A request protocol, should be either 'http://' or 'https://'.

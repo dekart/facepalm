@@ -22,6 +22,8 @@ module Facepalm
         end
       end
 
+      protected
+
       # Accessor to current application config. Override it in your controller
       # if you need multi-application support or per-request configuration selection.
       def facepalm

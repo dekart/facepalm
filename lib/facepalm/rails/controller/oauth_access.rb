@@ -43,6 +43,8 @@ module Facepalm
           end
         end
 
+        protected
+
         # Requires a given set of permissions in context of the current action.
         # Use it to require permissions in a single action or custom filter.
         #

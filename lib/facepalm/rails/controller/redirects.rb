@@ -8,6 +8,8 @@ module Facepalm
           end
         end
 
+        protected
+
         # Overrides ActionController::Base#redirect_to to pass signed_request in flash[]
         def redirect_to_with_signed_request(*args)
           flash[:signed_request] = fb_signed_request
