@@ -23,11 +23,22 @@ module Facepalm
           redirect_url = url_options.is_a?(String) ? url_options : url_for(url_options)
 
           logger.info "Redirecting from IFRAME to #{ redirect_url }"
-
-          render(
-            :text   => iframe_redirect_code(redirect_url),
-            :layout => false
-          )
+          
+          respond_to do |format|
+            format.html do
+              render(
+                :text   => iframe_redirect_html_code(redirect_url),
+                :layout => false
+              )
+            end
+            
+            format.js do
+              render(
+                :text   => iframe_redirect_js_code(redirect_url),
+                :layout => false
+              )
+            end
+          end
         end
 
         # Generates HTML and JavaScript code to redirect user with top frame location
@@ -36,7 +47,7 @@ module Facepalm
         # @param target_url   An URL to redirect the user to
         # @param custom_code  A custom HTML code to insert into the result document.
         #                     Can be used to add OpenGraph tags to redirect page code.
-        def iframe_redirect_code(target_url, custom_code = nil)
+        def iframe_redirect_html_code(target_url, custom_code = nil)
           %{
             <html><head>
               <script type="text/javascript">
@@ -49,6 +60,13 @@ module Facepalm
               #{ custom_code }
             </head></html>
           }
+        end
+        
+        # Generates JavaScript code to redirect user
+        #
+        # @param target_url   An URL to redirect the user to
+        def iframe_redirect_js_code(target_url)
+          "window.top.location.href = #{ target_url.to_json };"
         end
       end
     end
