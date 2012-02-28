@@ -74,22 +74,24 @@ module Facepalm
           if current_facebook_user.try(:authenticated?)
             true
           else
-            # Encrypting return URL to pass it to Facebook
-            return_code = facepalm_url_encryptor.encrypt(
-              url_for(params_without_facebook_data.merge(:canvas => false, :only_path => true))
-            )
-
             redirect_from_iframe(
               facepalm.oauth_client.url_for_oauth_code(
                 :permissions => permissions,
                 :callback => facepalm_endpoint_url(
-                  :fb_return_to => ::Rack::Utils.escape(return_code)
+                  :fb_return_to => ::Rack::Utils.escape(facepalm_auth_return_code)
                 )
               )
             )
 
             false
           end
+        end
+        
+        # Encrypting return URL to pass it to Facebook
+        def facepalm_auth_return_code
+          facepalm_url_encryptor.encrypt(
+              url_for(params_without_facebook_data.merge(:canvas => false, :only_path => true))
+            )
         end
 
         # Internally used to encrypt return URL for authentication endpoint
