@@ -16,7 +16,7 @@ module Facepalm
           # Fix cookie permission issue in IE
           before_filter :normal_cookies_for_ie_in_iframes!
 
-          helper_method(:facepalm, :fb_signed_request, :current_facebook_user, :params_without_facebook_data)
+          helper_method(:facepalm, :fb_signed_request, :current_facebook_user, :params_without_facebook_data, :fb_canvas?)
 
           helper Facepalm::Rails::Helpers
         end
@@ -49,6 +49,11 @@ module Facepalm
       # passed by Facebook
       def params_without_facebook_data
         params.except(:signed_request)
+      end
+      
+      # Did the request come from canvas app
+      def fb_canvas?
+        request.env['HTTP_SIGNED_REQUEST'].present?
       end
 
       private
