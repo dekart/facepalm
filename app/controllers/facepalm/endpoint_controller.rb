@@ -3,7 +3,7 @@ module Facepalm
     # OAuth 2.0 endpoint action added to ApplicationController and mounted to /facebook_oauth
     def show
       if params[:error]
-        raise Facepalm::OAuthException.new(params[:error][:message])
+        raise Facepalm::OAuthException.new(params[:error_description])
       else
         # this is where you get a code for requesting an access_token to do additional OAuth requests
         # outside of using the FB JavaScript library (see Authenticating Users in a Web Application
