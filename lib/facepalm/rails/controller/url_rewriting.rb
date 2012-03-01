@@ -1,7 +1,11 @@
+require 'facepalm/rails/helpers/url_helper'
+
 module Facepalm
   module Rails
     module Controller
       module UrlRewriting
+        include Facepalm::Rails::Helpers::UrlHelper
+
         def self.included(base)
           base.class_eval do
             helper_method(:facebook_canvas_page_url, :facebook_callback_url)
