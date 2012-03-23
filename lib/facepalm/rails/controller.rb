@@ -53,7 +53,7 @@ module Facepalm
       
       # Did the request come from canvas app
       def fb_canvas?
-        request.env['HTTP_SIGNED_REQUEST'].present?
+        request.env['HTTP_SIGNED_REQUEST'].present? || flash[:signed_request].present?
       end
 
       private
