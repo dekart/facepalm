@@ -12,8 +12,8 @@ module Facepalm
 
         # Overrides ActionController::Base#redirect_to to pass signed_request in flash[]
         def redirect_to_with_signed_request(*args)
-          flash[:signed_request] = fb_signed_request
-
+          flash[:signed_request] = fb_signed_request if fb_canvas?
+          
           redirect_to_without_signed_request(*args)
         end
 
