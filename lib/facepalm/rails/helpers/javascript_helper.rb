@@ -90,13 +90,7 @@ module Facepalm
             CODE
           end
 
-          js = js.html_safe
-
-          if block_given? && ::Rails::VERSION::STRING.to_i < 3
-            concat(js)
-          else
-            js
-          end
+          js.html_safe
         end
       end
     end
