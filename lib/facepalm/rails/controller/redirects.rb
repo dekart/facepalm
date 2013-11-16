@@ -49,16 +49,21 @@ module Facepalm
         #                     Can be used to add OpenGraph tags to redirect page code.
         def iframe_redirect_html_code(target_url, custom_code = nil)
           %{
-            <html><head>
-              <script type="text/javascript">
-                #{ iframe_redirect_js_code(target_url) };
-              </script>
-              <noscript>
-                <meta http-equiv="refresh" content="0;url=#{ target_url }" />
-                <meta http-equiv="window-target" content="_top" />
-              </noscript>
-              #{ custom_code }
-            </head><body></body>`</html>
+            <html>
+              <head>
+                <meta http-equiv="content-type" content="text/html; charset=utf-8">
+                <script type="text/javascript">
+                  #{ iframe_redirect_js_code(target_url) };
+                </script>
+                #{ custom_code }
+              </head>
+              <body>
+                <noscript>
+                  <meta http-equiv="refresh" content="0;url=#{ target_url }" />
+                  <meta http-equiv="window-target" content="_top" />
+                </noscript>
+              </body>
+            </html>
           }
         end
 
