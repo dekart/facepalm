@@ -15,3 +15,4 @@ require 'facepalm/rails/controller'
 require 'facepalm/rails/helpers'
 
 require 'facepalm/engine'
+require 'facepalm/routes'
