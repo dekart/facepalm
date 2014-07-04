@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
     "VERSION",
     "app/.gitkeep",
     "app/controllers/facepalm/endpoint_controller.rb",
-    "config/routes.rb",
     "facepalm.gemspec",
     "init.rb",
     "install",
@@ -38,6 +37,7 @@ Gem::Specification.new do |s|
     "lib/facepalm/rails/controller/url_rewriting.rb",
     "lib/facepalm/rails/helpers.rb",
     "lib/facepalm/rails/helpers/javascript_helper.rb",
+    "lib/facepalm/routes.rb",
     "lib/facepalm/user.rb"
   ]
   s.homepage = "http://github.com/dekart/facepalm"
