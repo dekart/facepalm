@@ -66,7 +66,7 @@ module Facepalm
 
     # Token expiration time
     def access_token_expires_at
-      Time.at(@options['expires'])
+      Time.at(@options['expires']) if @options['expires']
     end
 
     # Koala Facebook API client instantiated with user's access token
