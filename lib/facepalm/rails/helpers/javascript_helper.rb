@@ -40,7 +40,7 @@ module Facepalm
               status : #{ options[:status] },
               cookie : #{ options[:cookie] },
               xfbml  : #{ options[:xfbml] },
-              version: #{ options[:version] },
+              version: '#{ options[:version] }',
               frictionlessRequests : #{ options[:frictionless] },
               channelUrl : '#{ options[:channel_url] || 'null' }'
             });
