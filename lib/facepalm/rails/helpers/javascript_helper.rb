@@ -29,7 +29,7 @@ module Facepalm
             :xfbml        => true,
             :frictionless => true,
             :locale       => "en_US",
-            :version      => "v2.2"
+            :version      => "v2.9"
           )
 
           extra_js = capture(&block) if block_given?
