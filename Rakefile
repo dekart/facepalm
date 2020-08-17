@@ -23,7 +23,6 @@ begin
     gem.homepage = "http://github.com/dekart/facepalm"
     gem.authors = ["Aleksey V. Dmitriev"]
 
-    gem.add_dependency "ie_iframe_cookies", '~> 0.1.2'
     gem.add_dependency "koala", '~> 1.11.1'
   end
 

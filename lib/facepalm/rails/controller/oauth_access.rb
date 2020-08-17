@@ -85,7 +85,7 @@ module Facepalm
             false
           end
         end
-        
+
         # Encrypting return URL to pass it to Facebook
         def facepalm_auth_return_code
           facepalm_url_encryptor.encrypt(

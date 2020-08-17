@@ -4,7 +4,8 @@ module Facepalm
       module Redirects
         def self.included(base)
           base.class_eval do
-            alias_method_chain :redirect_to, :signed_request
+            alias_method :redirect_to_without_signed_request, :redirect_to
+            alias_method :redirect_to, :redirect_to_with_signed_request
           end
         end
 
