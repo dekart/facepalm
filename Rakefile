@@ -23,7 +23,7 @@ begin
     gem.homepage = "http://github.com/dekart/facepalm"
     gem.authors = ["Aleksey V. Dmitriev"]
 
-    gem.add_dependency "koala", '~> 1.11.1'
+    gem.add_dependency "koala", '~> 3.0.0'
   end
 
   Jeweler::GemcutterTasks.new

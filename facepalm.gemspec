@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Aleksey V. Dmitriev"]
-  s.date = "2019-07-03"
+  s.date = "2020-09-10"
   s.email = "rene.dekart@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE",
@@ -51,12 +51,12 @@ Gem::Specification.new do |s|
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<koala>, ["~> 1.11.1"])
+      s.add_runtime_dependency(%q<koala>, ["~> 3.0.0"])
     else
-      s.add_dependency(%q<koala>, ["~> 1.11.1"])
+      s.add_dependency(%q<koala>, ["~> 3.0.0"])
     end
   else
-    s.add_dependency(%q<koala>, ["~> 1.11.1"])
+    s.add_dependency(%q<koala>, ["~> 3.0.0"])
   end
 end
 
