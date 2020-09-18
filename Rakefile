@@ -22,6 +22,7 @@ begin
     gem.email = "rene.dekart@gmail.com"
     gem.homepage = "http://github.com/dekart/facepalm"
     gem.authors = ["Aleksey V. Dmitriev"]
+    gem.version = '1.0'
 
     gem.add_dependency "koala", '~> 3.0.0'
   end
