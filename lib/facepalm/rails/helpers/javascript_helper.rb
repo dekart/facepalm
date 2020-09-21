@@ -28,7 +28,8 @@ module Facepalm
             :status       => true,
             :xfbml        => true,
             :frictionless => true,
-            :locale       => "en_US"
+            :locale       => "en_US",
+            :version      => "v3.3"
           )
 
           extra_js = capture(&block) if block_given?
@@ -39,14 +40,13 @@ module Facepalm
               status : #{ options[:status] },
               cookie : #{ options[:cookie] },
               xfbml  : #{ options[:xfbml] },
+              version: '#{ options[:version] }',
               frictionlessRequests : #{ options[:frictionless] },
               channelUrl : '#{ options[:channel_url] || 'null' }'
             });
           JAVASCRIPT
 
-          init_js = "FB._https = true; #{ init_js }" if request.ssl?
-
-          js_url = "connect.facebook.net/#{options[:locale]}/all.js"
+          js_url = "connect.facebook.net/#{options[:locale]}/sdk.js"
           js_url << "?#{Time.now.change(:min => 0, :sec => 0, :usec => 0).to_i}" if options[:weak_cache]
 
           if options[:async]
@@ -92,13 +92,7 @@ module Facepalm
             CODE
           end
 
-          js = js.html_safe
-
-          if block_given? && ::Rails::VERSION::STRING.to_i < 3
-            concat(js)
-          else
-            js
-          end
+          js.html_safe
         end
       end
     end

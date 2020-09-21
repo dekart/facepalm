@@ -13,9 +13,6 @@ module Facepalm
           include Facepalm::Rails::Controller::UrlRewriting
           include Facepalm::Rails::Controller::Redirects
 
-          # Fix cookie permission issue in IE
-          before_filter :normal_cookies_for_ie_in_iframes!
-
           helper_method(:facepalm, :fb_signed_request, :current_facebook_user, :params_without_facebook_data, :fb_canvas?)
 
           helper Facepalm::Rails::Helpers
@@ -45,12 +42,12 @@ module Facepalm
         request.env['HTTP_SIGNED_REQUEST'] || flash[:signed_request]
       end
 
-      # A hash of params passed to this action, excluding secure information 
+      # A hash of params passed to this action, excluding secure information
       # passed by Facebook
       def params_without_facebook_data
-        params.except(:signed_request)
+        params.except(:signed_request).permit!.to_hash
       end
-      
+
       # Did the request come from canvas app
       def fb_canvas?
         request.env['HTTP_SIGNED_REQUEST'].present? || flash[:signed_request].present?

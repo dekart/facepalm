@@ -77,16 +77,15 @@ module Facepalm
             redirect_from_iframe(
               facepalm.oauth_client.url_for_oauth_code(
                 :permissions => permissions,
-                :callback => facepalm_endpoint_url(
-                  :fb_return_to => ::Rack::Utils.escape(facepalm_auth_return_code)
-                )
+                :callback => facepalm_endpoint_url,
+                :state => "{fb_return_to=#{ ::Rack::Utils.escape(facepalm_auth_return_code) }}"
               )
             )
 
             false
           end
         end
-        
+
         # Encrypting return URL to pass it to Facebook
         def facepalm_auth_return_code
           facepalm_url_encryptor.encrypt(

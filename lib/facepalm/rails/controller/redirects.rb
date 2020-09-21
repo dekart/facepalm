@@ -4,7 +4,8 @@ module Facepalm
       module Redirects
         def self.included(base)
           base.class_eval do
-            alias_method_chain :redirect_to, :signed_request
+            alias_method :redirect_to_without_signed_request, :redirect_to
+            alias_method :redirect_to, :redirect_to_with_signed_request
           end
         end
 
@@ -13,7 +14,7 @@ module Facepalm
         # Overrides ActionController::Base#redirect_to to pass signed_request in flash[]
         def redirect_to_with_signed_request(*args)
           flash[:signed_request] = fb_signed_request if fb_canvas?
-          
+
           redirect_to_without_signed_request(*args)
         end
 
@@ -23,7 +24,7 @@ module Facepalm
           redirect_url = url_options.is_a?(String) ? url_options : url_for(url_options)
 
           logger.info "Redirecting from IFRAME to #{ redirect_url }"
-          
+
           respond_to do |format|
             format.html do
               render(
@@ -31,7 +32,7 @@ module Facepalm
                 :layout => false
               )
             end
-            
+
             format.js do
               render(
                 :text   => iframe_redirect_js_code(redirect_url),
@@ -49,19 +50,24 @@ module Facepalm
         #                     Can be used to add OpenGraph tags to redirect page code.
         def iframe_redirect_html_code(target_url, custom_code = nil)
           %{
-            <html><head>
-              <script type="text/javascript">
-                window.top.location.href = #{ target_url.to_json };
-              </script>
-              <noscript>
-                <meta http-equiv="refresh" content="0;url=#{ target_url }" />
-                <meta http-equiv="window-target" content="_top" />
-              </noscript>
-              #{ custom_code }
-            </head></html>
+            <html>
+              <head>
+                <meta http-equiv="content-type" content="text/html; charset=utf-8">
+                <script type="text/javascript">
+                  #{ iframe_redirect_js_code(target_url) };
+                </script>
+                #{ custom_code }
+              </head>
+              <body>
+                <noscript>
+                  <meta http-equiv="refresh" content="0;url=#{ target_url }" />
+                  <meta http-equiv="window-target" content="_top" />
+                </noscript>
+              </body>
+            </html>
           }
         end
-        
+
         # Generates JavaScript code to redirect user
         #
         # @param target_url   An URL to redirect the user to

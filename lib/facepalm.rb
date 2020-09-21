@@ -2,7 +2,6 @@ module Facepalm
 end
 
 # Dependencies
-require 'ie_iframe_cookies'
 require 'koala'
 
 require 'facepalm/config'
@@ -15,3 +14,4 @@ require 'facepalm/rails/controller'
 require 'facepalm/rails/helpers'
 
 require 'facepalm/engine'
+require 'facepalm/routes'
