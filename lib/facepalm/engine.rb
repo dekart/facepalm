@@ -1,7 +1,7 @@
 module Facepalm
   class Engine < ::Rails::Engine
     initializer "facepalm.middleware" do |app|
-      app.middleware.insert_before(Rack::Head, Facepalm::Rack::PostCanvasMiddleware)
+      app.middleware.insert_before(::Rack::Head, Facepalm::Rack::PostCanvasMiddleware)
     end
 
     initializer "facepalm.controller_extension" do
