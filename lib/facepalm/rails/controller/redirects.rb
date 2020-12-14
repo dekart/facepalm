@@ -28,14 +28,14 @@ module Facepalm
           respond_to do |format|
             format.html do
               render(
-                :text   => iframe_redirect_html_code(redirect_url),
+                :plain   => iframe_redirect_html_code(redirect_url),
                 :layout => false
               )
             end
 
             format.js do
               render(
-                :text   => iframe_redirect_js_code(redirect_url),
+                :plain   => iframe_redirect_js_code(redirect_url),
                 :layout => false
               )
             end

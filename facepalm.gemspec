@@ -6,12 +6,12 @@
 
 Gem::Specification.new do |s|
   s.name = "facepalm".freeze
-  s.version = "1.1"
+  s.version = "1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Aleksey V. Dmitriev".freeze]
-  s.date = "2020-09-30"
+  s.date = "2020-12-14"
   s.email = "rene.dekart@gmail.com".freeze
   s.extra_rdoc_files = [
     "LICENSE",
